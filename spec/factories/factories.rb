@@ -15,4 +15,11 @@ FactoryGirl.define do
     subtitle {"#{Faker::Lorem.sentence}"}
     sport 'Lacrosse'
   end
+
+  factory :membership do
+    role 'teacher'
+    user
+    course
+  end
+
 end
