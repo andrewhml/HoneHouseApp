@@ -18,6 +18,10 @@
         .col-sm-10
           = f.text_area :url, placeholder: 'Course Video URL', class: 'form-control'
       .form-group
+        = f.label :course_image, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.file_field :course_image, class: 'btn btn-default'
+      .form-group
         = f.label :sport, class: 'col-sm-2 control-label'
         .col-sm-10
           = f.text_area :sport, placeholder: 'Sport', value: 'Lacrosse', class: 'form-control'

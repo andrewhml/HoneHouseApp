@@ -1,8 +1,8 @@
 .background-img{id: "#{@course.title}"}
-  %img.img{src: "http://honehouse.com/img/Stone-2.jpg"}
-    .page-wrap
-      .video
-        %iframe{width: '640', height: '360', src: "#{@course.url}", frameborder: 0, allowfullscreen: true}
+  = image_tag @course.course_image.url(:background), class: 'img'
+  .page-wrap
+    .video
+      %iframe{width: '640', height: '360', src: "#{@course.url}", frameborder: 0, allowfullscreen: true}
   }
 .container
   .page-header
