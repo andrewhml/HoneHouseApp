@@ -14,6 +14,7 @@ FactoryGirl.define do
     title {"#{Faker::Lorem.word}"}
     subtitle {"#{Faker::Lorem.sentence}"}
     url {"#{Faker::Internet.url}"}
+    description {"#{Faker::Lorem.sentence}"}
     sport 'Lacrosse'
   end
 

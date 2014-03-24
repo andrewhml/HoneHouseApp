@@ -1,0 +1,25 @@
+- if current_user.is_admin?
+  .container
+    = form_for @course, html: {class: 'form-horizontal'} do |f|
+      .form-group
+        = f.label :title, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_area :title, placeholder: 'Course Title', class: 'form-control'
+      .form-group
+        = f.label :subtitle, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_area :subtitle, placeholder: 'Course Subtitle', class: 'form-control'
+      .form-group
+        = f.label :description, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_area :description, placeholder: 'Course Description', class: 'form-control'
+      .form-group
+        = f.label :url, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_area :url, placeholder: 'Course Video URL', class: 'form-control'
+      .form-group
+        = f.label :sport, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_area :sport, placeholder: 'Sport', value: 'Lacrosse', class: 'form-control'
+      .col-sm-offset-2.col-sm-10
+        = f.submit 'Create Class', class: 'btn btn-success'

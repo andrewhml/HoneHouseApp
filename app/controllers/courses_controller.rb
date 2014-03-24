@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id]).includes(:lesson)
+    @course = Course.find(params[:id])
   end
 
   def new
@@ -47,6 +47,6 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:title, :subtitle, :sport)
+    params.require(:course).permit(:title, :subtitle, :sport, :url, :description)
   end
 end

@@ -13,6 +13,7 @@ describe Course do
     expect(build(:course, subtitle: nil)).to_not be_valid
     expect(build(:course, sport: nil)).to_not be_valid
     expect(build(:course, url: nil)).to_not be_valid
+    expect(build(:course, description: nil)).to_not be_valid
   end
 
   it { should have_many(:users).through(:memberships) }
