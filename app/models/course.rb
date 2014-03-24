@@ -19,4 +19,22 @@ class Course < ActiveRecord::Base
 
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :course_image, :content_type => /\Aimage\/.*\Z/
+
+  def count_lessons
+    lessons = 0
+    self.units.each do |unit|
+      lessons = lessons + unit.lessons.count
+    end
+    lessons
+  end
+
+  def count_resources
+    resources = 0
+    self.units.each do |unit|
+      unit.lessons.each do |lesson|
+        resources = resources + lesson.resources.count
+      end
+    end
+    resources
+  end
 end

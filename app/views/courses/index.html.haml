@@ -1,5 +1,8 @@
 .container
-  %h1 Welcome to HoneHouse!
+  .page-header
+    %h1 Welcome to HoneHouse!
+    - if user_signed_in? && current_user.is_admin?
+      = link_to 'Create new course', new_course_path, class: 'btn btn-primary'
   %ul
     - @courses.each do |course|
       %li= link_to course.title.upcase, course_path(course)

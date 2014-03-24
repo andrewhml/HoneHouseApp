@@ -1,4 +1,4 @@
-- if current_user.is_admin?
+- if user_signed_in? && current_user.is_admin?
   .container
     = form_for @lesson, html: {class: 'form-horizontal'} do |f|
       .form-group
@@ -12,3 +12,6 @@
       = f.hidden_field :unit_id, value: @unit.id
       .col-sm-offset-2.col-sm-10
         = f.submit 'Create Lesson', class: 'btn btn-primary'
+- else
+  %script
+    window.location.href="/"
