@@ -6,6 +6,34 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .notice= notice
-    .alert= alert
+    %nav.navbar.navbar-default{role: 'navigation'}
+      .container
+        / Brand and toggle get grouped for better mobile display
+        .navbar-header
+          %button.navbar-toggle{type: 'button', data: {toggle: 'collapse', target: '#bs-example-navbar-collapse-1'}}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to 'HoneHouse', root_path, class: 'navbar-brand'
+
+        / Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse#bs-example-navbar-collapse-1
+          %ul.nav.navbar-nav
+            %li.active
+              %a{href: '#'} Link
+            %li
+              %a{href: '#'} Link
+          %ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              %li
+                = link_to "Hello, #{current_user.first_name}", user_path(current_user)
+              %li
+                = link_to 'Sign out', destroy_user_session_path, method: :delete, prompt: 'Are you sure?'
+            - else
+              %li
+                = link_to 'Sign in', new_user_session_path
+    .container
+      .notice= notice
+      .alert= alert
     = yield
