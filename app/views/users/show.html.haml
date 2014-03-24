@@ -1,7 +1,11 @@
 .container
   .col-md-4
     .page-header
+      = image_tag @user.profile_image.url(:square)
       %h1= @user.first_name + " " + @user.last_name
+    %p= @user.headline
+    - if @user == current_user
+      = link_to 'Update Account', edit_user_registration_path, class: 'btn btn-success'
   .col-md-8
     .courses
       .page-header

@@ -88,4 +88,7 @@ HoneHouse::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+
+  config.action_controller.asset_host = ENV["AWS_CLOUDFRONT_ID"]
+
 end

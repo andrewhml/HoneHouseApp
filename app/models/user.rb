@@ -14,6 +14,17 @@ class User < ActiveRecord::Base
   has_many :courses, through: :memberships
   has_many :reviews
 
+  # This method associates the attribute ":course_image" with a file attachment
+  has_attached_file :profile_image, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>',
+    large: '800x600>'
+  }
+
+  # Validate the attached image is image/jpg, image/png, etc
+  validates_attachment_content_type :profile_image, :content_type => /\Aimage\/.*\Z/
+
   def is_admin?
     true if self.role == 'admin'
   end
