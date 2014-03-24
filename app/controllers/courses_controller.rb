@@ -27,9 +27,9 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @course = Course.new(course_params)
+    @course = Course.find(params[:id])
 
-    if @course.save
+    if @course.update_attributes(course_params)
       redirect_to course_path(@course)
       flash[:notice] = 'You have successfully updated the course'
     else
@@ -39,9 +39,11 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    @course.destroy
-    flash[:notice] = "Course deleted"
-    redirect_to 'courses#index'
+    course = Course.find(params[:id])
+    if course.destroy
+      flash[:error] = "Course deleted"
+      redirect_to root_url
+    end
   end
 
   private

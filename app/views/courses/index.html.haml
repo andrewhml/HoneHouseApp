@@ -2,4 +2,4 @@
   %h1 Welcome to HoneHouse!
   %ul
     - @courses.each do |course|
-      %li= course.title
+      %li= link_to course.title.upcase, course_path(course)
