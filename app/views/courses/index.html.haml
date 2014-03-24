@@ -1,1 +1,5 @@
-%h1 Welcome to HoneHouse!
+.container
+  %h1 Welcome to HoneHouse!
+  %ul
+    - @courses.each do |course|
+      %li= course.title

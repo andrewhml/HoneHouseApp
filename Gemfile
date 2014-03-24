@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'devise'
 gem 'haml-rails'
+gem 'sendgrid'
 gem 'rails_12factor', group: :production
 
 group :doc do

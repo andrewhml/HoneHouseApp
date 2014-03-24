@@ -13,6 +13,7 @@ FactoryGirl.define do
   factory :course do
     title {"#{Faker::Lorem.word}"}
     subtitle {"#{Faker::Lorem.sentence}"}
+    url {"#{Faker::Internet.url}"}
     sport 'Lacrosse'
   end
 

@@ -7,4 +7,5 @@ class Course < ActiveRecord::Base
   validates :title, presence: true
   validates :subtitle, presence: true
   validates :sport, presence: true
+  validates :url, presence: true
 end

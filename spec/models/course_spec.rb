@@ -9,9 +9,10 @@ describe Course do
   end
 
   it 'does not create invalid courses' do
-    expect(build(:course, title: '')).to_not be_valid
-    expect(build(:course, subtitle: '')).to_not be_valid
-    expect(build(:course, sport: '')).to_not be_valid
+    expect(build(:course, title: nil)).to_not be_valid
+    expect(build(:course, subtitle: nil)).to_not be_valid
+    expect(build(:course, sport: nil)).to_not be_valid
+    expect(build(:course, url: nil)).to_not be_valid
   end
 
   it { should have_many(:users).through(:memberships) }
