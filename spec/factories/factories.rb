@@ -22,4 +22,10 @@ FactoryGirl.define do
     course
   end
 
+  factory :unit do
+    unit_number {"#{Faker::Number.digit}"}
+    title {"#{Faker::Lorem.word}"}
+    description {"#{Faker::Lorem.sentence}"}
+    course
+  end
 end
