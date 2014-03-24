@@ -39,4 +39,16 @@ FactoryGirl.define do
     url {"#{Faker::Internet.url}"}
     lesson
   end
+
+  factory :resource do
+    title {"#{Faker::Lorem.word}"}
+    url {"#{Faker::Internet.url}"}
+    lesson
+  end
+
+  factory :review do
+    body {"#{Faker::Lorem.sentence}"}
+    user
+    course
+  end
 end

@@ -20,4 +20,6 @@ describe User do
   end
 
   it { should have_many(:courses).through(:memberships) }
+
+  it { should have_many(:reviews) }
 end

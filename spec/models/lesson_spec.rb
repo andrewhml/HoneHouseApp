@@ -10,6 +10,8 @@ describe Lesson do
 
   it { should have_one(:video) }
 
+  it { should have_many(:resources) }
+
   it 'creates a valid lesson with title, description, and unit' do
     expect(@valid_lesson).to be_valid
   end

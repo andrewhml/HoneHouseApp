@@ -16,4 +16,5 @@ describe Course do
 
   it { should have_many(:users).through(:memberships) }
   it { should have_many(:units) }
+  it { should have_many(:reviews) }
 end
