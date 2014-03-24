@@ -34,4 +34,9 @@ FactoryGirl.define do
     description {"#{Faker::Lorem.sentence}"}
     unit
   end
+
+  factory :video do
+    url {"#{Faker::Internet.url}"}
+    lesson
+  end
 end
