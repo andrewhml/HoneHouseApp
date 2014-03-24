@@ -13,10 +13,16 @@ describe User do
     expect(@user).to be_valid
   end
 
-  it 'does not allow invalid users to be created' do
+  it 'does not allow users to be created without first_name, last_name, or email' do
     expect(build(:user, first_name: '')).to_not be_valid
     expect(build(:user, last_name: '')).to_not be_valid
     expect(build(:user, email: '')).to_not be_valid
+  end
+
+  it 'only allows the creation of general and admin accounts' do
+    expect(create(:user, role: 'admin')).to be_valid
+    expect(create(:user, role: 'general')).to be_valid
+    expect(build(:user, role: 'hello')).to_not be_valid
   end
 
   it { should have_many(:courses).through(:memberships) }
