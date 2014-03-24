@@ -14,9 +14,9 @@ describe Unit do
     expect(@valid_unit).to be_valid
   end
 
-  it 'does not create units without a unit_number, title, or description' do
+  it 'does not create units without a unit_number or title' do
     expect(build(:unit, unit_number: nil)).to_not be_valid
     expect(build(:unit, title: nil)).to_not be_valid
-    expect(build(:unit, description: nil)).to_not be_valid
+    expect(build(:unit, description: nil)).to be_valid
   end
 end
