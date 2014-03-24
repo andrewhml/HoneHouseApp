@@ -1,5 +1,18 @@
 require 'spec_helper'
 
 describe Lesson do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    @unit = create(:unit)
+    @valid_lesson = create(:lesson, unit: @unit)
+    @invalid_lesson = build(:lesson, title: nil, unit: @unit)
+  end
+  it { should belong_to(:unit) }
+
+  it 'creates a valid lesson with title, description, and unit' do
+    expect(@valid_lesson).to be_valid
+  end
+
+  it 'does not create a lesson without a title' do
+    expect(@invalid_lesson).to_not be_valid
+  end
 end

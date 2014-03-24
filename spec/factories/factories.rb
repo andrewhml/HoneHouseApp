@@ -28,4 +28,10 @@ FactoryGirl.define do
     description {"#{Faker::Lorem.sentence}"}
     course
   end
+
+  factory :lesson do
+    title {"#{Faker::Lorem.word}"}
+    description {"#{Faker::Lorem.sentence}"}
+    unit
+  end
 end

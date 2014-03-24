@@ -8,6 +8,8 @@ describe Unit do
 
   it { should belong_to(:course) }
 
+  it { should have_many(:lessons) }
+
   it 'creates valid units belonging to a course' do
     expect(@valid_unit).to be_valid
   end
