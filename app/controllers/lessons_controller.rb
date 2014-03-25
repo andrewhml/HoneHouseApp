@@ -2,14 +2,22 @@ class LessonsController < ApplicationController
   before_action :authorize, except: :show
   def new
     @lesson = Lesson.new
-    @unit = Unit.find(params[:unit_id])
+    if params[:course_id].present?
+      @course = Course.find(params[:course_id])
+    end
+    if params[:unit_id].present?
+      @unit = Unit.find(params[:unit_id])
+    end
   end
 
   def create
     @lesson = Lesson.new(lesson_params)
-
+    @unit = Unit.find(lesson_params[:unit_id].to_i)
     if @lesson.save
-      redirect_to course_path(@lesson.find_course)
+      respond_to do |format|
+        format.html {redirect_to course_path(@lesson.find_course)}
+        format.json { render json: @lesson }
+      end
     else
       render :new
     end

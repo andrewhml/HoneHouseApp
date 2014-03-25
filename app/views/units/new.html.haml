@@ -4,15 +4,21 @@
       .form-group
         = f.label :unit_number, class: 'col-sm-2 control-label'
         .col-sm-10
-          = f.number_field :unit_number, placeholder: 'Unit Number', class: 'form-control'
+          = f.number_field :unit_number, placeholder: 'Unit Number', class: 'form-control', id: 'unit_num'
       .form-group
         = f.label :title, class: 'col-sm-2 control-label'
         .col-sm-10
-          = f.text_field :title, placeholder: 'Unit Title', class: 'form-control'
+          = f.text_field :title, placeholder: 'Unit Title', class: 'form-control', id: 'unit_title'
       .form-group
         = f.label :description, class: 'col-sm-2 control-label'
         .col-sm-10
-          = f.text_area :description, placeholder: 'Unit Description (optional)', class: 'form-control'
-      = f.hidden_field :course_id, value: @course.id
+          = f.text_area :description, placeholder: 'Unit Description (optional)', class: 'form-control', id: 'unit_desc'
+      = f.hidden_field :course_id, value: @course.id, id: 'c_id'
       .col-sm-offset-2.col-sm-10
-        = f.submit 'Create Unit', class: 'btn btn-success'
+        = f.submit 'Create Unit', class: 'btn btn-success', id: 'create_unit'
+    %button.btn.btn-info#create_new_lesson Create a new lesson
+    .units
+      - if @course.units.present?
+        - @course.units.each do |unit|
+          .unit
+            %p.lead= unit.unit_number.to_s + ' ' + unit.title

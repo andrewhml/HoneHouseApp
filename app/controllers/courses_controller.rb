@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     if @course.save
-      redirect_to course_path(@course)
+      redirect_to new_course_unit_path(@course)
       flash[:notice] = 'You have successfully created a new course'
     else
       flash.now[:errors] = @course.errors.full_messages.join(', ')

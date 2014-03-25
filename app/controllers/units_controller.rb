@@ -6,10 +6,14 @@ class UnitsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @unit = Unit.new(unit_params)
 
     if @unit.save
-      redirect_to course_url(@unit.course_id)
+      respond_to do |format|
+        format.html { redirect_to course_url(@unit.course_id) }
+        format.json { render json: @unit }
+      end
     else
       flash.now[:errors] = @unit.errors.full_messages.join(', ')
       render :new

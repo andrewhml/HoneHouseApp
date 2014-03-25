@@ -16,6 +16,7 @@ gem 'sendgrid'
 gem 'rails_12factor', group: :production
 gem 'paperclip'
 gem 'aws-sdk'
+gem "js-routes"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
