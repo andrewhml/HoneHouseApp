@@ -3,7 +3,7 @@ class Lesson < ActiveRecord::Base
 
   belongs_to :unit
   has_one :video
-  has_many :resources
+  has_many :resources, dependent: :destroy
 
   def find_course
     unit_id = self.unit_id

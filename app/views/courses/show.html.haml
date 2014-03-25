@@ -22,8 +22,20 @@
         = image_tag 'video-icon.png', class: 'badge-icon'
         .promo-desc
           %h3= "#{@course.count_resources} Additional Resource Downloads"
-
 .row.page#page2
+  .container
+    .col-sm-6
+      - if current_user.is_admin?
+        - if !@teacher
+          = link_to 'Add a teacher', new_course_membership_path(@course)
+        - else
+          = link_to 'Edit teacher', edit_course_membership_path(@course, @membership)
+      = image_tag @teacher.profile_image(:large), class: 'big-image'
+      %h2= @teacher.full_name
+      %p.lead= @teacher.headline
+    .col-sm-6
+      %h1.promo-blue FROM PROFESSIONAL ATHLETES & COACHES
+.row.page#page3
   .container
     .page-header
       %h1.text-white Course Curriculum

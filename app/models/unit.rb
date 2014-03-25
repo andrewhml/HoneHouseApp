@@ -3,5 +3,5 @@ class Unit < ActiveRecord::Base
   validates :title, presence: true
 
   belongs_to :course
-  has_many :lessons, order: :created_at
+  has_many :lessons, order: :created_at, dependent: :destroy
 end

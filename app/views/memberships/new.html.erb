@@ -1,0 +1,59 @@
+<% if current_user.is_admin? %>
+  <div class="container">
+    <%= form_for [@course, @membership], html: {class: 'form-horizontal'} do |f| %>
+      <div class="form-group">
+        <div class="col-sm-2 control-label">
+          <%= f.label 'Select Teacher' %>
+        </div>
+        <div class="col-sm-10">
+          <input id="select_origin" placeholder="Enter a user" class="form-control">
+          <%= f.hidden_field :user_id, id: 'link_origin_id', value: '' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :role, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.radio_button :role, 'teacher', :checked => true %> Teacher
+          <%= f.radio_button :role, value: 'student' %> Student
+        </div>
+      </div>
+      <%= f.hidden_field :course_id, value: @course.id %>
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit 'Create Unit', class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+
+    $('input#select_origin').autocomplete({
+      minLength: 2,
+      source: "<%= users_path(:json) %>",
+      focus: function(event, ui) {
+        event.preventDefault();
+        $('#select_origin').val(ui.item.first_name + " " + ui.item.last_name);
+        return false;
+      },
+      select: function(event, ui) {
+        debugger;
+        event.preventDefault();
+        $('#select_origin').val(ui.item.first_name + " " + ui.item.last_name);
+
+        $('#link_origin_id').val(ui.item.id);
+        return false;
+      }
+    })
+
+    .data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+      return $( "<li></li>" )
+          .data( "item.autocomplete", item )
+      // For now which just want to show the person.given_name in the list.
+      .append( "<a>" + item.first_name + " " + item.last_name + "</a>" )
+      .appendTo( ul );
+    };
+    $('input#select_origin').attr('autocomplete','on');
+  });
+
+</script>

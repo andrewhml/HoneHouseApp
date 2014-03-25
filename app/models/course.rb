@@ -1,8 +1,8 @@
 class Course < ActiveRecord::Base
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :units, order: :unit_number
-  has_many :reviews
+  has_many :units, order: :unit_number, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   validates :title, presence: true
   validates :subtitle, presence: true
@@ -36,5 +36,10 @@ class Course < ActiveRecord::Base
       end
     end
     resources
+  end
+
+  def find_teacher
+    teacher_id = self.memberships.find_by_role('teacher').user_id
+    User.find(teacher_id)
   end
 end

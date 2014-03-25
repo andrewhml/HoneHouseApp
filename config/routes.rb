@@ -1,7 +1,8 @@
 HoneHouse::Application.routes.draw do
   devise_for :users
-  resources :users, only: :show
+  resources :users, only: [:show, :index]
   resources :courses do
+    resources :memberships, only: [:new, :create, :edit, :update]
     resources :units, only: [:new, :create, :edit, :update]
   end
 

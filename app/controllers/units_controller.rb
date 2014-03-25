@@ -1,4 +1,5 @@
 class UnitsController < ApplicationController
+  before_action :authorize, except: :show
   def new
     @unit = Unit.new
     @course = Course.find(params[:course_id].to_i)
@@ -25,5 +26,9 @@ class UnitsController < ApplicationController
 
   def unit_params
     params.require(:unit).permit(:unit_number, :title, :description, :course_id)
+  end
+
+  def authorize
+    unauthorized! if (!user_signed_in? || !current_user.is_admin?)
   end
 end

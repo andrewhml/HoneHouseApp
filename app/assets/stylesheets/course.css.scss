@@ -18,6 +18,10 @@ img.img {
     background-repeat: no-repeat
   }
 
+.big-image {
+  max-width: 100%;
+}
+
 div.video {
   position: absolute;
   top: 60px;
@@ -72,7 +76,18 @@ background-color: rgba(0,0,0,0.8);
 /*********************
 PAGE2 STYLES
 *********************/
-#page2 {
+.promo-blue {
+  letter-spacing: -2px;
+  font-weight: bold;
+  font-size: 70px;
+  margin-top: 20px;
+  color: #2C3E50;
+}
+
+/*********************
+PAGE3 STYLES
+*********************/
+#page3 {
   background-color: #27AE60;
 }
 

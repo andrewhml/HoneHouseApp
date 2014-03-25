@@ -1,10 +1,18 @@
 class CoursesController < ApplicationController
+  before_action :authorize, except: [:index, :show]
   def index
     @courses = Course.all
   end
 
   def show
     @course = Course.find(params[:id])
+    if @course.memberships.find_by_role('teacher')
+      @membership = @course.memberships.find_by_role('teacher')
+      @teacher =  @course.find_teacher
+    else
+      @membership = nil
+      @teacher = nil
+    end
   end
 
   def new
@@ -50,5 +58,9 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:title, :subtitle, :sport, :url, :description, :course_image)
+  end
+
+  def authorize
+    unauthorized! if (!user_signed_in? || !current_user.is_admin?)
   end
 end
