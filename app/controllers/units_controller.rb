@@ -20,6 +20,23 @@ class UnitsController < ApplicationController
     end
   end
 
+  def edit
+    @unit = Unit.find(params[:id])
+    @course = Course.find(params[:course_id])
+  end
+
+  def update
+    @unit = Unit.find(params[:id])
+
+    if @unit.update_attributes(unit_params)
+      redirect_to course_path(@unit.course_id)
+      flash[:notice] = 'You have successfully updated the course'
+    else
+      flash.now[:errors] = @course.errors.full_messages.join(', ')
+      render :edit
+    end
+  end
+
   def destroy
     unit = Unit.find(params[:id])
     unit.destroy

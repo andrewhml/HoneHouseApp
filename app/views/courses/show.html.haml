@@ -25,7 +25,7 @@
 .row.page#page2
   .container
     .col-sm-6
-      - if current_user.is_admin?
+      - if user_signed_in? && current_user.is_admin?
         - if !@teacher.present?
           = link_to 'Add a teacher', new_course_membership_path(@course)
         - else
@@ -50,9 +50,11 @@
           .boxy
             %h3.unit= "Unit #{unit.unit_number}: #{unit.title}"
             - if user_signed_in? && current_user.is_admin?
-              = link_to 'Add a lesson', new_lesson_path(@course, unit), class: 'btn btn-sm btn-default'
-              = link_to 'Edit unit', edit_course_unit_path(@course, unit), class: 'btn btn-sm btn-warning'
-              = link_to 'Delete unit', unit_path(unit), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger'
+              = link_to 'Edit unit', edit_course_unit_path(@course, unit), class: 'text-warning'
+              |
+              = link_to 'Delete unit', unit_path(unit), method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger'
+              |
+              = link_to 'Add a lesson', new_lesson_path(@course, unit), class: 'text-white'
 
             %table.table
               %tbody
@@ -61,7 +63,10 @@
                     %td
                       = lesson.title
                       - if user_signed_in? && current_user.is_admin?
-                        = link_to "Edit lesson", edit_lesson_path(lesson), class: 'text-white'
+                        .pull-right
+                          = link_to "Edit lesson", edit_lesson_path(lesson), class: 'text-white'
+                          |
+                          = link_to 'Delete lesson', lesson_path(lesson), method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger'
 
 
 

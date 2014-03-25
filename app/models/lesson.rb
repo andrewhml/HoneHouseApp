@@ -2,7 +2,7 @@ class Lesson < ActiveRecord::Base
   validates :title, presence: true
 
   belongs_to :unit
-  has_one :video
+  has_one :video, dependent: :destroy
   has_many :resources, dependent: :destroy
 
   def find_course

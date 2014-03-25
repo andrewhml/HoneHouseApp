@@ -1,5 +1,7 @@
 - if user_signed_in? && current_user.is_admin?
   .container
+    .page-header
+      %h1= "Lessons for #{@course.title}"
     = form_for @lesson, html: {class: 'form-horizontal'} do |f|
       .form-group
         = f.label :title, class: 'col-sm-2 control-label'
