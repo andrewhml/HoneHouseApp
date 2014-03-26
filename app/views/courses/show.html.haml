@@ -1,72 +1,101 @@
-.background-img{id: "#{@course.title}"}
-  = image_tag @course.course_image.url(:background), class: 'img'
-  .page-wrap
-    .video
-      %h1.promo.text-white= @course.title
-      %iframe{width: '640', height: '360', src: "#{@course.url}", frameborder: 0, allowfullscreen: true}
-.row.page#page1
-  .container
-    .col-sm-6
-      - if user_signed_in? && current_user.is_admin?
-        = link_to 'Create new course', new_course_path, class: 'btn btn-primary'
-        = link_to 'Edit course', edit_course_path(@course), class: 'btn btn-warning'
-        = link_to 'Delete course', course_path(@course), method: :delete, data: {confirm: 'Are you sure you want to delete the course?'}, class: 'btn btn-danger'
+.persist-area
+  .top-area
+    .background-img{id: "#{@course.title}"}
+      = image_tag @course.course_image.url(:background), class: 'img'
+      .page-wrap
+        .video
+          %h1.promo.text-white= @course.title
+          %iframe{width: '640', height: '360', src: "#{@course.url}", frameborder: 0, allowfullscreen: true}
+    %nav.navbar.navbar-default.persist-header{role: "navigation"}
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        %button.navbar-toggle{type: 'button', data: {toggle: 'collapse', target: '#bs-example-navbar-collapse-1'}}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
 
-      %h1.promo= @course.subtitle
-    .col-sm-6
-      .promo-list
-        = image_tag 'video-icon.png', class: 'badge-icon'
-        .promo-desc
-          %h3= "#{@course.count_lessons} Video Lessons"
-      .promo-list
-        = image_tag 'video-icon.png', class: 'badge-icon'
-        .promo-desc
-          %h3= "#{@course.count_resources} Additional Resource Downloads"
-.row.page#page2
-  .container
-    .col-sm-6
-      - if user_signed_in? && current_user.is_admin?
-        - if !@teacher.present?
-          = link_to 'Add a teacher', new_course_membership_path(@course)
-        - else
-          = link_to 'Edit teacher', edit_course_membership_path(@course, @membership)
-      - if @teacher.present?
-        = image_tag @teacher.profile_image(:large), class: 'big-image'
-        %h2= @teacher.full_name
-        %p.lead= @teacher.headline
-    .col-sm-6
-      %h1.promo-blue FROM PROFESSIONAL ATHLETES & COACHES
-.row.page#page3
-  .container
-    .page-header
-      %h1.text-white Course Curriculum
-      - if user_signed_in? && current_user.is_admin?
-        = link_to 'Add a new unit', new_course_unit_path(@course), class: 'btn btn-default'
-    %p= @course.description
-    - @course.units.each_slice(3) do |group|
-      .row
-      - group.each do |unit|
-        .col-sm-4
-          .boxy
-            %h3.unit= "Unit #{unit.unit_number}: #{unit.title}"
-            - if user_signed_in? && current_user.is_admin?
-              = link_to 'Edit unit', edit_course_unit_path(@course, unit), class: 'text-warning'
-              |
-              = link_to 'Delete unit', unit_path(unit), method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger'
-              |
-              = link_to 'Add a lesson', new_lesson_path(@course, unit), class: 'text-white'
+      / Collect the nav links, forms, and other content for toggling
+      .collapse.navbar-collapse#bs-example-navbar-collapse-1
+        .col-sm-7.col-sm-offset-1.col-md-6.col-md-offset-2.col-lg-5.col-lg-offset-3
+          %ul.nav.navbar-nav
+            %li
+              %a{href: "#page1"} Overview
+            %li
+              %a{href: "#page3"} Curriculum
+            %li
+              %a{href: "#page4"} Coach
+            %li
+              %a{href: "#page6"} Get Started
+        .col-sm-4.col-md-4
+          %ul.nav.navbar-nav
+            %li.nav-btn
+              %a.btn.btn-action.btn-rev.btn-default{href: "https://mikestonelacrosseacademy.wufoo.com/forms/s1nvmrmp1248av1/", onclick: "window.open(this.href,  null, 'height=517, width=680, toolbar=0, location=0, status=1, scrollbars=1, resizable=1'); return false"} Request Info
+            %li.nav-btn
+              %button.btn.btn-action.btn-promo#pre-order Pre-Order Now
+  .row.page#page1
+    .container
+      .col-sm-6
+        - if user_signed_in? && current_user.is_admin?
+          = link_to 'Create new course', new_course_path, class: 'btn btn-primary'
+          = link_to 'Edit course', edit_course_path(@course), class: 'btn btn-warning'
+          = link_to 'Delete course', course_path(@course), method: :delete, data: {confirm: 'Are you sure you want to delete the course?'}, class: 'btn btn-danger'
 
-            %table.table
-              %tbody
-                - unit.lessons.each do |lesson|
-                  %tr
-                    %td
-                      = lesson.title
-                      - if user_signed_in? && current_user.is_admin?
-                        .pull-right
-                          = link_to "Edit lesson", edit_lesson_path(lesson), class: 'text-white'
-                          |
-                          = link_to 'Delete lesson', lesson_path(lesson), method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger'
+        %h1.promo= @course.subtitle
+      .col-sm-6
+        .promo-list
+          = image_tag 'video-icon.png', class: 'badge-icon'
+          .promo-desc
+            %h3= "#{@course.count_lessons} Video Lessons"
+        .promo-list
+          = image_tag 'video-icon.png', class: 'badge-icon'
+          .promo-desc
+            %h3= "#{@course.count_resources} Additional Resource Downloads"
+  .row.page#page2
+    .container
+      .col-sm-6
+        - if user_signed_in? && current_user.is_admin?
+          - if !@teacher.present?
+            = link_to 'Add a teacher', new_course_membership_path(@course)
+          - else
+            = link_to 'Edit teacher', edit_course_membership_path(@course, @membership)
+        - if @teacher.present?
+          = image_tag @teacher.profile_image(:large), class: 'big-image'
+          %h2= @teacher.full_name
+          %p.lead= @teacher.headline
+      .col-sm-6
+        %h1.promo-blue FROM PROFESSIONAL ATHLETES & COACHES
+  .row.page#page3
+    .container
+      .page-header
+        %h1.text-white Course Curriculum
+        - if user_signed_in? && current_user.is_admin?
+          = link_to 'Add a new unit', new_course_unit_path(@course), class: 'btn btn-default'
+      %p= @course.description
+      - @course.units.each_slice(3) do |group|
+        .row
+        - group.each do |unit|
+          .col-sm-4
+            .boxy
+              %h3.unit= "Unit #{unit.unit_number}: #{unit.title}"
+              - if user_signed_in? && current_user.is_admin?
+                = link_to 'Edit unit', edit_course_unit_path(@course, unit), class: 'text-warning'
+                |
+                = link_to 'Delete unit', unit_path(unit), method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger'
+                |
+                = link_to 'Add a lesson', new_lesson_path(@course, unit), class: 'text-white'
+
+              %table.table
+                %tbody
+                  - unit.lessons.each do |lesson|
+                    %tr
+                      %td
+                        = lesson.title
+                        - if user_signed_in? && current_user.is_admin?
+                          .pull-right
+                            = link_to "Edit lesson", edit_lesson_path(lesson), class: 'text-white'
+                            |
+                            = link_to 'Delete lesson', lesson_path(lesson), method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger'
 
 
 
