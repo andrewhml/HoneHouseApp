@@ -42,4 +42,12 @@ class Course < ActiveRecord::Base
     teacher_id = self.memberships.find_by_role('teacher').user_id
     User.find(teacher_id)
   end
+
+  def check_membership(user)
+    memberships = self.memberships.where(role: 'student')
+    memberships.each do |membership|
+      return true if membership.user_id == user.id
+    end
+    false
+  end
 end

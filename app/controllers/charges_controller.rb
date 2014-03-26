@@ -1,14 +1,14 @@
 class ChargesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :find_course, :check_membership
 
   def new
+
   end
 
   def create
-
     # Amount in cents
     @amount = 10
-    @course = Course.find(params[:course_id])
+
 
     customer = Stripe::Customer.create(
       :email => user_signed_in? ? current_user.email : nil,
@@ -29,6 +29,20 @@ class ChargesController < ApplicationController
     else
       flash[:error] = e.message
       render :new
+    end
+
+  end
+
+  private
+
+  def find_course
+    @course = Course.find(params[:course_id])
+  end
+
+  def check_membership
+    if @course.check_membership(current_user)
+      flash[:alert] = "You are already registered for this course."
+      redirect_to course_path(@course)
     end
   end
 end

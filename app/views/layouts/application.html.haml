@@ -38,8 +38,8 @@
               %li
                 = link_to 'Sign in', new_user_session_path
     .container
-      -if flash[:notice].present?
+      -if notice.present?
         .alert.alert-success= notice
-      -if flash[:errors].present?
+      -if alert.present?
         .alert.alert-danger= alert
     = yield

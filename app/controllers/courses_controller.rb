@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
       redirect_to new_course_unit_path(@course)
       flash[:notice] = 'You have successfully created a new course'
     else
-      flash.now[:errors] = @course.errors.full_messages.join(', ')
+      flash.now[:alert] = @course.errors.full_messages.join(', ')
       render :new
     end
   end
@@ -42,7 +42,7 @@ class CoursesController < ApplicationController
       redirect_to course_path(@course)
       flash[:notice] = 'You have successfully updated the course'
     else
-      flash.now[:errors] = @course.errors.full_messages.join(', ')
+      flash.now[:alert] = @course.errors.full_messages.join(', ')
       render :edit
     end
   end
@@ -50,7 +50,7 @@ class CoursesController < ApplicationController
   def destroy
     course = Course.find(params[:id])
     if course.destroy
-      flash[:error] = "Course deleted"
+      flash[:alert] = "Course deleted"
       redirect_to root_url
     end
   end

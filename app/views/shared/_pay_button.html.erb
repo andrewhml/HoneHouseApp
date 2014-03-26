@@ -1,14 +1,9 @@
 <% if user_signed_in? %>
   <%= form_tag course_charges_path(@course) do %>
-    <article>
-      <label class="amount">
-        <span>Amount: $5.00</span>
-      </label>
-    </article>
-
     <script src="https://checkout.stripe.com/checkout.js" class='<%= class_name %>'
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="Course Registration"></script>
+            data-description="Course Registration"
+            data-amount="500"></script>
   <% end %>
 <% else %>
   <%= link_to 'Sign in to register', new_user_registration_path, class: 'stripe-button-link' %>
