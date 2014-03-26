@@ -32,4 +32,14 @@ class User < ActiveRecord::Base
   def full_name
     self.first_name + " " + self.last_name
   end
+
+  def save_stripe_customer_id(id)
+    self.stripe_id = id
+    self.save!
+  end
+
+  def has_stripe_id?
+    self.stripe_id.present? ? true : false
+  end
+
 end

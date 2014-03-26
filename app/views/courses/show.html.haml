@@ -24,8 +24,6 @@
             %li
               %a.nav-link{href: "#page3"} Curriculum
             %li
-              %a.nav-link{href: "#page4"} Coach
-            %li
               %a.nav-link{href: "#page6"} Get Started
         .col-sm-4.col-md-4
           %ul.nav.navbar-nav
@@ -33,7 +31,7 @@
               %a.btn.btn-action.btn-rev.btn-default{href: "https://mikestonelacrosseacademy.wufoo.com/forms/s1nvmrmp1248av1/", onclick: "window.open(this.href,  null, 'height=517, width=680, toolbar=0, location=0, status=1, scrollbars=1, resizable=1'); return false"} Request Info
             %li.nav-btn
               - if user_signed_in? && !@course.check_membership(current_user)
-                %button.btn.btn-action.btn-promo#pre-order Pre-Order Now
+                %a.btn.btn-action.btn-promo#pre-order Pre-Order Now
               - else
                 %button.btn.btn-action.btn-promo.disabled#pre-order Registered
   .row.page#page1
