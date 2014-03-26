@@ -83,7 +83,7 @@
                 |
                 = link_to 'Delete unit', unit_path(unit), method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger'
                 |
-                = link_to 'Add a lesson', new_lesson_path(@course, unit), class: 'text-white'
+                = link_to 'Add a new lesson', new_lesson_path(@course, unit), class: 'text-white'
 
               %table.table
                 %tbody
@@ -93,9 +93,9 @@
                         = lesson.title
                         - if user_signed_in? && current_user.is_admin?
                           .pull-right
-                            = link_to "Edit lesson", edit_lesson_path(lesson), class: 'text-white'
+                            = link_to "Edit", edit_lesson_path(lesson), class: 'text-warning'
                             |
-                            = link_to 'Delete lesson', lesson_path(lesson), method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger'
+                            = link_to 'Delete', lesson_path(lesson), method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger'
 
 
 
