@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require js-routes
-//= require bootstrap
 //= require jquery.ui.autocomplete
+//= require bootstrap
 //= require_tree .

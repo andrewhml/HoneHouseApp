@@ -17,6 +17,7 @@ gem 'rails_12factor', group: :production
 gem 'paperclip'
 gem 'aws-sdk'
 gem "js-routes"
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
