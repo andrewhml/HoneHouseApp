@@ -31,3 +31,15 @@ p {
   line-height: 27px;
   margin: 15px 0;
 }
+
+.no-margin-bottom {
+  margin-bottom: 0 !important;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.block {
+  display: block;
+}

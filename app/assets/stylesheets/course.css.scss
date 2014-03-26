@@ -61,7 +61,12 @@ background-color: rgba(0,0,0,0.8);
   padding-top: 72px;
 }
 
-
+#back_to_top {
+  position: fixed;
+  bottom: 80px;
+  right: 100px;
+  text-align: center;
+}
 
 /*********************
 GLOBAL STYLES
@@ -86,6 +91,22 @@ GLOBAL STYLES
 
 .boxy {
   padding: 5px 10px;
+}
+
+.dk-bg {
+  padding: 25px 25px;
+  background-color: rgba(0,0,0,0.8);
+  color: #fff;
+}
+
+.back-top {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  &:hover {
+    color: #eee;
+    text-decoration: none;
+  }
 }
 
 .btn-action {
@@ -300,6 +321,10 @@ STRIPE BUTTON STYLES
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
+  &:hover {
+    color: #eee;
+    text-decoration: none;
+  }
 }
 
 .btn-margin {

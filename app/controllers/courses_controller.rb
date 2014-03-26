@@ -5,7 +5,8 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = Course.includes(:units).find(params[:id])
+    @units = @course.units.includes(:lessons)
     if @course.memberships.find_by_role('teacher')
       @membership = @course.memberships.find_by_role('teacher')
       @teacher =  @course.find_teacher

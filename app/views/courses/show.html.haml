@@ -1,5 +1,5 @@
 .persist-area
-  .top-area
+  .top-area#top-area
     .background-img{id: "#{@course.title}"}
       = image_tag @course.course_image.url(:background), class: 'img'
       .page-wrap
@@ -20,13 +20,13 @@
         .col-sm-7.col-sm-offset-1.col-md-6.col-md-offset-2.col-lg-5.col-lg-offset-3
           %ul.nav.navbar-nav
             %li
-              %a{href: "#page1"} Overview
+              %a.nav-link{href: "#page1"} Overview
             %li
-              %a{href: "#page3"} Curriculum
+              %a.nav-link{href: "#page3"} Curriculum
             %li
-              %a{href: "#page4"} Coach
+              %a.nav-link{href: "#page4"} Coach
             %li
-              %a{href: "#page6"} Get Started
+              %a.nav-link{href: "#page6"} Get Started
         .col-sm-4.col-md-4
           %ul.nav.navbar-nav
             %li.nav-btn
@@ -72,7 +72,7 @@
         - if user_signed_in? && current_user.is_admin?
           = link_to 'Add a new unit', new_course_unit_path(@course), class: 'btn btn-default'
       %p= @course.description
-      - @course.units.each_slice(3) do |group|
+      - @units.each_slice(3) do |group|
         .row
         - group.each do |unit|
           .col-sm-4
@@ -96,10 +96,42 @@
                             = link_to "Edit", edit_lesson_path(lesson), class: 'text-warning'
                             |
                             = link_to 'Delete', lesson_path(lesson), method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger'
-  .row.page#page4
+  .row.page#page6
     .container
-      = render partial: 'shared/pay_button', locals: {class_name: 'stripe-button'}
+      .page-header
+        %h1 Get a head start
+      .col-sm-6
+        %h2 Pre-order now and get a 50% discount
+        %p.no-margin-bottom Have questions?
+        %a.block.margin-bottom{href: "https://mikestonelacrosseacademy.wufoo.com/forms/s1nvmrmp1248av1/", onclick: "window.open(this.href,  null, 'height=517, width=680, toolbar=0, location=0, status=1, scrollbars=1, resizable=1'); return false"} We have anwers
+        = render partial: 'shared/pay_button', locals: {class_name: 'stripe-button'}
+      .col-sm-6
+        .grey-box
+          .page-header2
+            %h2 Unlimited Access
+          %ul.items
+            %li
+              %span.bold= "#{@course.count_lessons} video lessons"
+              %ul
+                %li On-demand video library
+                %li Access online anytime!
+            %li
+              %span.bold Downloadable training tools
+              %ul
+                %li Easy-to-understand drills & training
+                %li Backyard drills for individuals or groups
+            %li
+              %span.bold Coaching tools for parents
+              %ul
+                %li Gain a better understand of how to play the game
+                %li Stay connected with your kid's training
+            %li
+              %span.bold Stay up-to-date
+              %ul
+                %li Get the latest from Mike Stone and HoneHouse
+                %li Be the first to know about upcoming series and membership events
 
-
+%a.nav-link.dk-bg.back-top#back_to_top{href: '#top-area'}
+  %span.glyphicon.glyphicon-arrow-up
 
 

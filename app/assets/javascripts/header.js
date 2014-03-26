@@ -11,11 +11,14 @@ function UpdateTableHeaders() {
             "visibility": "visible",
             "z-index": "10"
            });
+           $('#back_to_top').show(300);
        } else {
            floatingHeader.css({
             "visibility": "hidden"
            });
+           $('#back_to_top').hide();
        }
+
    });
 }
 
