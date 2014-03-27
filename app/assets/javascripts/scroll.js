@@ -3,6 +3,5 @@ $(document).ready(function(){
     e.preventDefault();
     var clickID = $(this).attr("href");
     $("body").animate({scrollTop: $(clickID).offset().top}, "slow");
-    return false;
   });
 });
