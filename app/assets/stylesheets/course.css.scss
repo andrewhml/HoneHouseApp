@@ -1,6 +1,75 @@
 /**************************
 STYLES FOR COURSES
 **************************/
+#homepage-bg {
+  width: 100%;
+  height: 800px;
+  background: image-url('homepage-bg.jpg') no-repeat center 10% fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#title-top {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  height: 200px;
+}
+
+.white-box {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  width: 70%;
+  padding: 10px 20px;
+  text-align: right;
+  background-color: #fff;
+}
+
+.homepage-header {
+  color: #000;
+}
+
+.course {
+  height: 300px;
+  position: relative;
+
+}
+
+.thumbnail-img {
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.course-link {
+  color: #fff;
+  font-weight: bold;
+  font-size: 28px;
+  position: absolute;
+  top: 38%;
+  &:hover {
+    text-decoration: none;
+    color: #eee;
+  }
+}
+
+.homepage-box {
+  position: relative;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.course img {
+  width: 100%;
+  height: 100%;
+}
+
 .background-img {
   width: 100%;
   height: 600px;
@@ -178,7 +247,7 @@ HEADER STYLES
   margin: 15px;
 }
 .navbar-default {
-  background-color: rgba(255,255,255,0.97);
+  background-color: rgba(255,255,255,0.5);
 }
 
 /*********************

@@ -1,8 +1,15 @@
-.container
-  .page-header
-    %h1 Welcome to HoneHouse!
-    - if user_signed_in? && current_user.is_admin?
-      = link_to 'Create new course', new_course_path, class: 'btn btn-primary'
-  %ul
-    - @courses.each do |course|
-      %li= link_to course.title.upcase, course_path(course)
+#homepage-bg
+  - if user_signed_in? && current_user.is_admin?
+    = link_to 'Create new course', new_course_path, class: 'btn btn-primary'
+  .row#title-top
+    .white-box
+      %h1.text-green HoneHouse is your home for skill development
+  .container
+
+    - @courses.each_slice(3) do |course_group|
+      #courses.row
+        - course_group.each do |course|
+          .course.col-sm-4{id: "course_#{course.id}"}
+            = image_tag course.course_image.url(:square), class: 'thumbnail-img', href: course_path(course)
+            .homepage-box
+              = link_to course.title.upcase, course_path(course), class: 'course-link'
