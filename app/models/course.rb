@@ -15,8 +15,8 @@ class Course < ActiveRecord::Base
     thumb: '100x100>',
     square: '200x200#',
     background: '1000x662>'
-  }
-
+  },
+  default_url: "HoneHouse_Logo.png"
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :course_image, :content_type => /\Aimage\/.*\Z/
 
