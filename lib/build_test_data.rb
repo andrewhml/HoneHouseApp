@@ -1,12 +1,13 @@
 require 'faker'
 class TestData
   SPORTS = ['Lacrosse', 'Baseball', 'Football', 'Basketball', 'Hockey']
-  def self.build
+  def self.build(num)
     Course.delete_all
     Unit.delete_all
     Lesson.delete_all
-    mike = User.find_by_first_name_and_last_name('Mike', 'Stone')
-    10.times do |i|
+    mike = User.find(1)
+    binding.pry
+    num.times do |i|
       course = Course.create!(title: "#{Faker::Lorem.word}", subtitle: "#{Faker::Lorem.sentence}", url: "//www.youtube.com/embed/PshZbUfGV6M", description: "#{Faker::Lorem.sentence}", sport: SPORTS.sample)
       Membership.create!(user_id: mike.id, course_id: course.id, role: 'teacher')
       3.times do |j|
@@ -16,6 +17,6 @@ class TestData
         end
       end
     end
-    puts "Courses created"
+    puts "Courses, units, and lessons created"
   end
 end
