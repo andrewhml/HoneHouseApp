@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
     square: '200x200#',
     medium: '300x300>',
     large: '800x600>'
-  }
+  },
+  default_url: 'stone-trophy.png'
 
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :profile_image, :content_type => /\Aimage\/.*\Z/

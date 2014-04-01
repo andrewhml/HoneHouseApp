@@ -1,12 +1,8 @@
 require 'faker'
 class TestData
   SPORTS = ['Lacrosse', 'Baseball', 'Football', 'Basketball', 'Hockey']
-  def self.build(num)
-    Course.delete_all
-    Unit.delete_all
-    Lesson.delete_all
-    mike = User.find(1)
-    binding.pry
+  def self.build(num=10)
+    mike = User.create!(first_name: 'Mike', last_name: 'Stone', email: 'mike@example.com', password: 'password', headline: 'Boston Cannons #41')
     num.times do |i|
       course = Course.create!(title: "#{Faker::Lorem.word}", subtitle: "#{Faker::Lorem.sentence}", url: "//www.youtube.com/embed/PshZbUfGV6M", description: "#{Faker::Lorem.sentence}", sport: SPORTS.sample)
       Membership.create!(user_id: mike.id, course_id: course.id, role: 'teacher')
@@ -17,6 +13,6 @@ class TestData
         end
       end
     end
-    puts "Courses, units, and lessons created"
+    puts "#{num} Courses created"
   end
 end
