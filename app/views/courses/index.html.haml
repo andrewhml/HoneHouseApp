@@ -1,11 +1,12 @@
-#homepage-bg
-  - if user_signed_in? && current_user.is_admin?
-    = link_to 'Create new course', new_course_path, class: 'btn btn-primary'
-  .row#title-top
-    .white-box
-      %h1.text-green HoneHouse is your home for skill development
+- if user_signed_in? && current_user.is_admin?
+  = link_to 'Create new course', new_course_path, class: 'btn btn-primary'
+#title-top
+  #homepage-bg
+    .container
+      %h1.intro-text HoneHouse is your home for skill development
+      %h2.intro-subtitle Check out our featured course below
+#index-lower
   .container
-
     - @courses.each_slice(3) do |course_group|
       #courses.row
         - course_group.each do |course|
